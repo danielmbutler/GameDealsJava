@@ -1,11 +1,13 @@
 package com.dbtechprojects.gamedealsjava.ui.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import com.dbtechprojects.gamedealsjava.R;
 import com.dbtechprojects.gamedealsjava.databinding.ActivityMainBinding;
@@ -37,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                // do nothing
+                // stops fragment recreation
+            }
+        });
     }
 
     @Override
