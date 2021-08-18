@@ -13,7 +13,7 @@ import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
 
 public class HomeFragment extends Fragment {
 
-    FragmentGameBinding binding;
+    private FragmentGameBinding binding;
 
 
     @Nullable

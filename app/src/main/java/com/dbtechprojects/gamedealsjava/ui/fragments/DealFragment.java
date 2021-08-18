@@ -14,7 +14,7 @@ import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
 
 public class DealFragment extends Fragment {
 
-     ActivityGameDealBinding binding;
+     private ActivityGameDealBinding binding;
 
 
     @Nullable

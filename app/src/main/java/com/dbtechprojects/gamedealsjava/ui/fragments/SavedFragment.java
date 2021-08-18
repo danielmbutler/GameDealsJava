@@ -14,7 +14,7 @@ import com.dbtechprojects.gamedealsjava.databinding.FragmentSavedDealsBinding;
 
 public class SavedFragment extends Fragment {
 
-    FragmentSavedDealsBinding binding;
+    private FragmentSavedDealsBinding binding;
 
 
     @Nullable
