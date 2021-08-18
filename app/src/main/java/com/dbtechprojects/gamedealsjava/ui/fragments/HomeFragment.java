@@ -8,13 +8,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
+import com.dbtechprojects.gamedealsjava.ui.viewmodels.HomeViewModel;
 
 public class HomeFragment extends Fragment {
 
     private FragmentGameBinding binding;
+    private HomeViewModel viewModel;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+    }
 
     @Nullable
     @Override

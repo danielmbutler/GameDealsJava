@@ -9,5 +9,11 @@ public class HomeViewModel extends ViewModel {
     // setup repository
     private final RepositoryImpl repository = RepositoryImpl.getInstance();
 
+    //call get games when viewModel gets instantiated
+    public HomeViewModel(
+    ) {
+        repository.getGames("test");
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package com.dbtechprojects.gamedealsjava.repository;
 
+import android.util.Log;
+
 import com.dbtechprojects.gamedealsjava.models.Game;
 
 import java.util.List;
@@ -20,7 +22,8 @@ public class RepositoryImpl implements DefaultRepository{
 
 
     @Override
-    public List<Game> getGames() {
+    public List<Game> getGames(String query) {
+        Log.d("repository", "getGames method called");
         return null;
     }
 

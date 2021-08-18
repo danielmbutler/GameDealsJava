@@ -10,6 +10,8 @@ buildscript {
         material_components_version = '1.4.0'
         lifecycle_liveData_version = "2.3.1"
         hilt_version = "2.37"
+        rxjava_version = '2.2.7'
+        rxandroid_version = '2.1.1'
     }
     repositories {
         google()
