@@ -9,15 +9,27 @@
         android:id="@+id/homeFragment"
         android:name="com.dbtechprojects.gamedealsjava.ui.fragments.HomeFragment"
         tools:layout="@layout/fragment_game"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_dealFragment"
+            app:destination="@id/dealFragment" />
+    </fragment>
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.dbtechprojects.gamedealsjava.ui.fragments.SavedFragment"
         tools:layout="@layout/fragment_saved_deals"
-        android:label="SavedFragment" />
+        android:label="SavedFragment" >
+        <action
+            android:id="@+id/action_savedFragment_to_dealFragment"
+            app:destination="@id/dealFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dealFragment"
         android:name="com.dbtechprojects.gamedealsjava.ui.fragments.DealFragment"
         android:label="activity_game_deal"
-        tools:layout="@layout/activity_game_deal" />
+        tools:layout="@layout/activity_game_deal" >
+        <argument
+            android:name="Game"
+            app:argType="com.dbtechprojects.gamedealsjava.models.Game" />
+    </fragment>
 </navigation>
