@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Menu_Item_GameFragment"
+        android:title="@string/menu_games"
+        android:icon="@drawable/ic_baseline_sports_esports_24"/>
+    <item
+        android:id="@+id/Menu_Item_SavedDealsFragment"
+        android:title="@string/saved_deals"
+        android:icon="@drawable/ic_baseline_save_alt_24"/>
+</menu>

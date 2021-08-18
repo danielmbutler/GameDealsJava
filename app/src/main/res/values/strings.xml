@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GameDealsJava</string>
+    <string name="menu_games">Games</string>
+    <string name="saved_deals">Saved Deals</string>
+</resources>
