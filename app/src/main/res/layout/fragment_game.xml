@@ -13,7 +13,7 @@
         android:focusableInTouchMode="true"
         android:layout_width="0px"
         android:layout_height="0px"
-        />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/GameFragmentSearchBar"

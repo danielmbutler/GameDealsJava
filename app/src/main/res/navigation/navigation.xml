@@ -10,4 +10,14 @@
         android:name="com.dbtechprojects.gamedealsjava.ui.fragments.HomeFragment"
         tools:layout="@layout/fragment_game"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/savedFragment"
+        android:name="com.dbtechprojects.gamedealsjava.ui.fragments.SavedFragment"
+        tools:layout="@layout/fragment_saved_deals"
+        android:label="SavedFragment" />
+    <fragment
+        android:id="@+id/dealFragment"
+        android:name="com.dbtechprojects.gamedealsjava.ui.fragments.DealFragment"
+        android:label="activity_game_deal"
+        tools:layout="@layout/activity_game_deal" />
 </navigation>
