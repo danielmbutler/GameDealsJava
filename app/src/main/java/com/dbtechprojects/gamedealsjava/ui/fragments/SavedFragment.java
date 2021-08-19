@@ -4,18 +4,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
+import androidx.lifecycle.ViewModelProvider;
 import com.dbtechprojects.gamedealsjava.databinding.FragmentSavedDealsBinding;
+import com.dbtechprojects.gamedealsjava.ui.viewmodels.SavedViewModel;
 
 public class SavedFragment extends Fragment {
 
     private FragmentSavedDealsBinding binding;
+    private SavedViewModel viewModel;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(SavedViewModel.class);
+    }
 
     @Nullable
     @Override

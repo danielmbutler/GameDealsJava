@@ -12,6 +12,8 @@ import com.dbtechprojects.gamedealsjava.persistence.GameDatabase;
 import com.dbtechprojects.gamedealsjava.persistence.GameDatabaseTable;
 import com.dbtechprojects.gamedealsjava.utils.MyApplication;
 import java.util.List;
+import java.util.Observable;
+
 import io.reactivex.Completable;
 import io.reactivex.Single;
 
@@ -61,11 +63,19 @@ public class RepositoryImpl implements DefaultRepository {
     }
 
     public Completable saveGame(Game game){
+        Log.d("repository", "saving game " + game);
         return Completable.create(emitter -> {
-            // Gets the data repository in write mode
+            // Gets the database in write mode
             SQLiteDatabase db = gameDb.getWritableDatabase();
+            Log.d("Completable", "saving game " + game);
             GameDatabaseTable.SaveGame(game, db);
-            db.close();
+        });
+    }
+
+    public Single<List<Game>> getSavedGames(){
+        return Single.create(emitter -> {
+            SQLiteDatabase db = gameDb.getReadableDatabase();
+            emitter.onSuccess(GameDatabaseTable.getSavedGames(db));
         });
     }
 }

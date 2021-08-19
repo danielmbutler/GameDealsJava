@@ -15,4 +15,5 @@
     <string name="game_name">Game Name</string>
     <string name="search_error">Please provide search term</string>
     <string name="no_games_error">No games found</string>
+    <string name="saved_game">Saved game</string>
 </resources>
