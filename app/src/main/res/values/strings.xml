@@ -12,4 +12,5 @@
     <string name="searchbtn">Search</string>
     <string name="latest_message">Latest Message</string>
     <string name="search_for_games_using_the_bar_above">Search for games using the bar above.</string>
+    <string name="game_name">Game Name</string>
 </resources>
