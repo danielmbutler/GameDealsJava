@@ -40,14 +40,8 @@ public class MainActivity extends AppCompatActivity {
     // setup bottom nav
     private void setupNavigation(){
         BottomNavigationView navigationView = binding.Bottomnavigation;
-
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeFragment, R.id.savedFragment )
-                .build();
-
         //Initialize NavController.
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
         navigationView.setOnNavigationItemReselectedListener(item -> {

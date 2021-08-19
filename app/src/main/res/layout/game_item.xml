@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@drawable/textlines">
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp">
 
     <ImageView
         android:id="@+id/SavedRowGameThumbnail"
@@ -13,17 +13,17 @@
         android:layout_marginStart="16dp"
         android:background="@null"
         android:contentDescription="@string/image"
-        app:layout_constraintBottom_toBottomOf="@+id/GameItem_Price"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/GameItem_Price"
-        app:layout_constraintVertical_bias="0.27"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="6dp"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
     <ImageView
         android:id="@+id/GameItem_Arrow"
         android:layout_width="29dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:contentDescription="@string/image"
         android:visibility="visible"
@@ -35,20 +35,23 @@
 
     <TextView
         android:id="@+id/GameItem_Title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@null"
-        tools:text="@string/game_name"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/GameItem_Price"
-        app:layout_constraintTop_toBottomOf="@+id/GameItem_Price" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/GameItem_Price"
+        app:layout_constraintStart_toEndOf="@+id/SavedRowGameThumbnail"
+        app:layout_constraintTop_toTopOf="@+id/SavedRowGameThumbnail"
+        tools:text="@string/game_name" />
 
     <TextView
         android:id="@+id/GameItem_Price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@null"
         android:ellipsize="none"
         android:fontFamily="@font/gaming_font"
@@ -57,12 +60,8 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/SavedRow_Game_Delete"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/SavedRowGameThumbnail"
+        app:layout_constraintEnd_toStartOf="@+id/GameItem_Arrow"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24"
-        app:layout_constraintVertical_chainStyle="packed"
         tools:text="price" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,20 +3,19 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/AppCyan</item>
-        <item name="colorPrimaryVariant">@color/AppMetalicBlack</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/AppWhite</item>
+        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:background">?attr/colorPrimaryVariant</item>
-        <item name="android:textColor">@color/AppWhite</item>
+        <item name="android:textColor">@color/black</item>
 
         <item name="android:actionBarStyle">@style/Widget.App.BottomNavigationView</item>
-        <item name="actionBarTheme">@style/ThemeOverlay.ActionBar</item>
 
 
 
@@ -30,18 +29,12 @@
     <style name="ThemeOverlay.App.BottomNavigationView" parent="">
         <item name="colorPrimary">@color/AppMetalicGray</item>
         <item name="colorOnPrimary">@color/AppCyan</item>
-        <item name="android:background">@color/AppMetalicBlack</item>
+        <item name="android:background">@color/white</item>
         <item name="fontFamily">@font/gaming_font</item>
         <item name="android:textSize">20sp</item>
     </style>
 
-    <!---set Actionbar Text -->
 
-    <style name="ThemeOverlay.ActionBar" parent="AppTheme">
-        <item name="fontFamily">@font/gaming_font</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="actionBarSize">40sp</item>
-    </style>
 
     <!---set Chips Theme -->
 
@@ -61,9 +54,9 @@
     <style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="colorPrimary">@color/AppCyan</item>
-        <item name="colorPrimaryVariant">@color/AppMetalicBlack</item>
-        <item name="android:background">?attr/colorPrimaryVariant</item>
-        <item name="android:textColor">@color/AppWhite</item>
+        <item name="colorPrimaryVariant">@color/AppWhite</item>
+        <item name="android:background">@color/AppWhite</item>
+        <item name="android:textColor">@color/AppMetalicBlack</item>
 
     </style>
 

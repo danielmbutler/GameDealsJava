@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/AppMetalicBlack"
     android:id="@+id/GameFragmentLayout"
     android:orientation="vertical">
 
@@ -26,8 +25,8 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:maxLength="50"
-        android:textColor="@color/AppWhite"
-        android:textColorHint="@color/AppWhite"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +36,8 @@
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/game_item"
+        android:background="#eeeeee"
+        android:padding="6dp"
         android:layout_marginBottom="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
