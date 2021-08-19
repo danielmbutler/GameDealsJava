@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements GameListAdapter.onClickLis
             if (adapter != null && !games.isEmpty()){
                 adapter.setDataSet(games);
                 hidePlaceHolder();
-            }
+            } else ViewUtils.showSnackBar(binding.getRoot(), requireActivity(), getString(R.string.no_games_error));
         });
     }
 

@@ -10,17 +10,27 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.dbtechprojects.gamedealsjava.R;
 import com.dbtechprojects.gamedealsjava.databinding.ActivityGameDealBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
+import com.dbtechprojects.gamedealsjava.ui.viewmodels.DealViewModel;
 import com.dbtechprojects.gamedealsjava.utils.ImageLoader;
+import com.dbtechprojects.gamedealsjava.utils.ViewUtils;
 
 public class DealFragment extends Fragment {
 
     private ActivityGameDealBinding binding;
+    private DealViewModel viewModel;
     private Game game;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(DealViewModel.class);
+    }
 
     @Nullable
     @Override
@@ -36,11 +46,21 @@ public class DealFragment extends Fragment {
         game = DealFragmentArgs.fromBundle(getArguments()).getGame();
         setupClicks();
         setupView(game);
+        initObservers();
 
+    }
+
+    private void initObservers() {
+        viewModel.dbMessages.observe(getViewLifecycleOwner(), message -> {
+            if (message != null  && !message.isEmpty()){
+                ViewUtils.showSnackBar(binding.getRoot(), requireActivity(), message);
+            }
+        });
     }
 
     private void setupClicks() {
         binding.GameDealGetDealButton.setOnClickListener(v -> browseDeal());
+        binding.GameDealSaveDealButton.setOnClickListener(v -> viewModel.saveGame(game));
     }
 
     private void setupView(Game game) {

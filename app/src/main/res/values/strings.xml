@@ -14,4 +14,5 @@
     <string name="search_for_games_using_the_bar_above">Search for games using the bar above.</string>
     <string name="game_name">Game Name</string>
     <string name="search_error">Please provide search term</string>
+    <string name="no_games_error">No games found</string>
 </resources>
