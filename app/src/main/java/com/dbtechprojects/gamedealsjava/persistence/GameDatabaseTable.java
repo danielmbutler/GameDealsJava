@@ -29,6 +29,10 @@ public class GameDatabaseTable {
 
     // DB Helper Methods
 
+    /*
+     create table with unique condition of GameID, any games that have the same GameID will be replaced
+     (stops duplicate data)
+     */
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + TableColumns.TABLE_NAME + " (" +
                     TableColumns._ID + " INTEGER PRIMARY KEY," +
@@ -38,7 +42,9 @@ public class GameDatabaseTable {
                     TableColumns.COLUMN_NAME_CheapestDealId + " TEXT," +
                     TableColumns.COLUMN_NAME_GameId + " TEXT," +
                     TableColumns.COLUMN_NAME_Cheapest + " TEXT," +
-                    TableColumns.COLUMN_NAME_SteamAppId + " TEXT)";
+                    TableColumns.COLUMN_NAME_SteamAppId + " TEXT, "
+                    + "unique (" + TableColumns.COLUMN_NAME_GameId + ") on conflict replace" + ")";
+
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + TableColumns.TABLE_NAME;
@@ -64,7 +70,7 @@ public class GameDatabaseTable {
     // retrieve all saved games
     public static ArrayList<Game> getSavedGames(SQLiteDatabase db){
         Log.d("Games Database", "get Saved games called");
-        ArrayList<Game> gameList = new ArrayList<Game>();
+        ArrayList<Game> gameList = new ArrayList<>();
         Cursor res = db.rawQuery( "select * from "+TableColumns.TABLE_NAME, null );
         res.moveToFirst();
         while(!res.isAfterLast()) {

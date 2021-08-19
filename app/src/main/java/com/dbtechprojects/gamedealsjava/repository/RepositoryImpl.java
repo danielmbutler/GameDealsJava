@@ -4,6 +4,9 @@ import static com.dbtechprojects.gamedealsjava.utils.Constants.BASE_URL;
 import static com.dbtechprojects.gamedealsjava.utils.Constants.SEARCH_URL;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.dbtechprojects.gamedealsjava.api.ApiClient;
 import com.dbtechprojects.gamedealsjava.models.Game;
@@ -15,6 +18,8 @@ import java.util.List;
 import java.util.Observable;
 
 import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
+import io.reactivex.CompletableOnSubscribe;
 import io.reactivex.Single;
 
 
@@ -64,12 +69,17 @@ public class RepositoryImpl implements DefaultRepository {
 
     public Completable saveGame(Game game){
         Log.d("repository", "saving game " + game);
-        return Completable.create(emitter -> {
-            // Gets the database in write mode
-            SQLiteDatabase db = gameDb.getWritableDatabase();
-            Log.d("Completable", "saving game " + game);
-            GameDatabaseTable.SaveGame(game, db);
-        });
+        return Completable.create(
+                emitter -> {
+                 try {
+                     SQLiteDatabase db = gameDb.getWritableDatabase();
+                     Log.d("Completable", "saving game " + game);
+                     GameDatabaseTable.SaveGame(game, db);
+                 } catch (Exception e){
+                     e.printStackTrace();
+                 }
+                }
+        );
     }
 
     public Single<List<Game>> getSavedGames(){

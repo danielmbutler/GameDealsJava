@@ -18,7 +18,7 @@ public class GameDatabase extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "gamesDatabase";
     private static final String DATABASE_TABLE = "table_name";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 6;
 
     public static synchronized GameDatabase getInstance(Context context) {
 
