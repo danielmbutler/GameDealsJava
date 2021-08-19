@@ -1,6 +1,7 @@
 package com.dbtechprojects.gamedealsjava.ui.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dbtechprojects.gamedealsjava.R;
 import com.dbtechprojects.gamedealsjava.databinding.GameItemBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
+import com.dbtechprojects.gamedealsjava.utils.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,6 @@ import java.util.List;
 public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVViewHolder> {
     private List<Game> dataSet = new ArrayList<>();
     private final onClickListener clickListener;
-   ;
 
     public GameListAdapter(
             onClickListener clickListener
@@ -59,6 +61,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVView
 
         public static RVViewHolder getViewHolder(ViewGroup parent) {
             GameItemBinding binding = GameItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+
             return new RVViewHolder(binding);
         }
 
@@ -72,6 +75,12 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVView
                     clickListener.onClick(currentItem);
                 }
             });
+
+            // load image
+            ImageLoader
+            .getSharedInstance(itemView.getContext())
+            .load(currentItem.thumb).placeholder(R.drawable.ic_baseline_search_placeholder)
+            .into(binding.SavedRowGameThumbnail);
         }
 
     }

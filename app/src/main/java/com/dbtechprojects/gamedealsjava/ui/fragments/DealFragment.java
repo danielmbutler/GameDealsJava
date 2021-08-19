@@ -4,19 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.dbtechprojects.gamedealsjava.R;
 import com.dbtechprojects.gamedealsjava.databinding.ActivityGameDealBinding;
-import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
+import com.dbtechprojects.gamedealsjava.utils.ImageLoader;
 
 public class DealFragment extends Fragment {
 
      private ActivityGameDealBinding binding;
-     private Game game;
 
 
     @Nullable
@@ -30,7 +29,7 @@ public class DealFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        game = DealFragmentArgs.fromBundle(getArguments()).getGame();
+        Game game = DealFragmentArgs.fromBundle(getArguments()).getGame();
         setupView(game);
 
     }
@@ -38,6 +37,11 @@ public class DealFragment extends Fragment {
     private void setupView(Game game){
         binding.GameDealTitle.setText(game.external);
         binding.GameDealPriceTextView.setText(game.cheapest);
+        // load image
+        ImageLoader
+                .getSharedInstance(requireContext())
+                .load(game.thumb).placeholder(R.drawable.ic_baseline_search_placeholder)
+                .into(binding.GameDealimageView);
     }
 
     @Override
