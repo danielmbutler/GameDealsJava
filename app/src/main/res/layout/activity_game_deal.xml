@@ -19,7 +19,7 @@
         tools:targetApi="lollipop" />
 
     <TextView
-        android:id="@+id/gameDealPriceTV2"
+        android:id="@+id/gameDealDisclaimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/GameDealSaveDealButton" />
 
     <TextView
-        android:id="@+id/GameDealTextView"
+        android:id="@+id/GameDealTitle"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="32dp"
@@ -69,7 +69,7 @@
         app:icon="@drawable/ic_baseline_shopping_bag_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GameDealPriceTV" />
+        app:layout_constraintTop_toBottomOf="@+id/GameDealPriceTextView" />
 
     <Button
         android:id="@+id/GameDealSaveDealButton"
@@ -84,26 +84,26 @@
         app:layout_constraintTop_toBottomOf="@+id/GameDealGetDealButton" />
 
     <TextView
-        android:id="@+id/GameDealPriceTV"
+        android:id="@+id/GameDealPriceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
         android:text="@string/textview"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/gamePriceTV"
+        app:layout_constraintStart_toEndOf="@+id/gamePricePlaceholder"
         app:layout_constraintTop_toBottomOf="@+id/GameDealimageView" />
 
     <TextView
-        android:id="@+id/gamePriceTV"
+        android:id="@+id/gamePricePlaceholder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Price: "
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/GameDealPriceTV"
+        app:layout_constraintBottom_toBottomOf="@+id/GameDealPriceTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/GameDealPriceTV"
+        app:layout_constraintTop_toTopOf="@+id/GameDealPriceTextView"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

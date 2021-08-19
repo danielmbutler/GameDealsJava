@@ -12,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
@@ -76,5 +79,8 @@ public class HomeFragment extends Fragment implements GameListAdapter.onClickLis
     @Override
     public void onClick(Game game) {
         Log.d("HomeFragment", "game click " + game.external);
+        // Navigate to gamedeal fragment
+        NavHostFragment.findNavController(this)
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDealFragment(game));
     }
 }

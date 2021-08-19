@@ -11,10 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import com.dbtechprojects.gamedealsjava.databinding.ActivityGameDealBinding;
 import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
+import com.dbtechprojects.gamedealsjava.models.Game;
 
 public class DealFragment extends Fragment {
 
      private ActivityGameDealBinding binding;
+     private Game game;
 
 
     @Nullable
@@ -28,6 +30,14 @@ public class DealFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        game = DealFragmentArgs.fromBundle(getArguments()).getGame();
+        setupView(game);
+
+    }
+
+    private void setupView(Game game){
+        binding.GameDealTitle.setText(game.external);
+        binding.GameDealPriceTextView.setText(game.cheapest);
     }
 
     @Override
