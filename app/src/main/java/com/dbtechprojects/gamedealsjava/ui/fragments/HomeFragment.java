@@ -12,14 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
+import com.dbtechprojects.gamedealsjava.R;
 import com.dbtechprojects.gamedealsjava.databinding.FragmentGameBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
 import com.dbtechprojects.gamedealsjava.ui.adapters.GameListAdapter;
 import com.dbtechprojects.gamedealsjava.ui.viewmodels.HomeViewModel;
+import com.dbtechprojects.gamedealsjava.utils.ViewUtils;
 
 public class HomeFragment extends Fragment implements GameListAdapter.onClickListener {
 
@@ -45,8 +45,22 @@ public class HomeFragment extends Fragment implements GameListAdapter.onClickLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupRV();
+        setupClicks();
         initObservers();
 
+    }
+
+    private void setupClicks() {
+        binding.GameFragementSearchButton.setOnClickListener(v -> {
+            ViewUtils.hideSoftKeyBoard(requireContext(), binding.getRoot());
+            String query = binding.GameFragmentSearchBar.getText().toString();
+            if (query.isEmpty()){
+                ViewUtils.showSnackBar(binding.getRoot(), requireActivity(), getString(R.string.search_error));
+                return;
+            }
+            viewModel.getGames(query);
+
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

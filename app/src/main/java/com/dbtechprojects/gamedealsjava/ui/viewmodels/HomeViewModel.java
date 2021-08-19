@@ -28,14 +28,8 @@ public class HomeViewModel extends ViewModel {
     private final MutableLiveData<List<Game>> _gamesList = new MutableLiveData<List<Game>>();
     public LiveData<List<Game>> gamesList = _gamesList;
 
-    //call get games when viewModel gets instantiated
-    public HomeViewModel(
-    ) {
-        getGames("test");
-    }
-
-    private void getGames(String query) {
-        Disposable subscription = repository.getGameList("test")
+    public void getGames(String query) {
+        Disposable subscription = repository.getGameList(query)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(_gamesList::postValue);

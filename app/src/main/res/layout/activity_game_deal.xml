@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/AppBackGroundGrey"
     tools:context=".ui.fragments.DealFragment">
 
     <TextView
         android:id="@+id/gameDealDisclaimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/AppBackGroundGrey"
         android:layout_marginTop="16dp"
         android:text="Powered by CheapShark.com"
         app:layout_constraintEnd_toEndOf="@+id/GameDealSaveDealButton"
@@ -25,6 +27,7 @@
         android:fontFamily="@font/gaming_font"
         android:scrollbarSize="5sp"
         android:scrollbarThumbVertical="@color/AppWhite"
+        android:background="@color/AppBackGroundGrey"
         android:scrollbars="vertical"
         android:text="@string/textview"
         android:textSize="30sp"
@@ -79,6 +82,7 @@
         android:layout_marginTop="60dp"
         android:text="@string/textview"
         android:textSize="18sp"
+        android:background="@color/AppBackGroundGrey"
         app:layout_constraintStart_toEndOf="@+id/gamePricePlaceholder"
         app:layout_constraintTop_toBottomOf="@+id/GameDealimageView" />
 
@@ -89,6 +93,7 @@
         android:layout_marginStart="16dp"
         android:text="Price: "
         android:textSize="18sp"
+        android:background="@color/AppBackGroundGrey"
         app:layout_constraintBottom_toBottomOf="@+id/GameDealPriceTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/GameDealPriceTextView"
