@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorPrimary">@color/AppWhite</item>
+        <item name="colorOnPrimary">@color/AppCyan</item>
+        <item name="android:background">@color/white</item>
+        <item name="background">@color/white</item>
+        <item name="fontFamily">@font/gaming_font</item>
+        <item name="itemBackground">@color/AppWhite</item>
+        <item name="android:itemBackground">@color/AppWhite</item>
+        <item name="android:iconTint">@color/AppWhite</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+</resources>

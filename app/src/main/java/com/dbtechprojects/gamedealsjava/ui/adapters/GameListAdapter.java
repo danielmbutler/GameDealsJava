@@ -67,7 +67,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVView
 
         @SuppressLint("SetTextI18n")
         public void bind(Game currentItem, onClickListener clickListener) {
-            binding.GameItemPrice.setText(currentItem.cheapest);
+            binding.GameItemPrice.setText("$" + currentItem.cheapest);
             binding.GameItemTitle.setText(currentItem.external);
             binding.GameItemArrow.setOnClickListener(new View.OnClickListener() {
                 @Override

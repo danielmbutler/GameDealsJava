@@ -14,5 +14,6 @@
     <color name="AppCyan">#5DE7DD</color>
     <color name="AppMetalicGray">#838996</color>
     <color name="AppCyanDark">#339e96</color>
+    <color name="AppBackGroundGrey">#eee</color>
 
 </resources>
