@@ -45,53 +45,28 @@ public class RepositoryImpl implements DefaultRepository {
     }
 
 
-    @Override
-    public List<Game> getGames(String query) {
-        Log.d("repository", "getGames method called");
-        String requestUrl = BASE_URL + SEARCH_URL + query;
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                requestUrl,
-
-                response -> {
-                    Log.d("repository", response.toString());
-                },
-                error -> {
-                    Log.d("repository", error.getMessage());
-                }
-        );
-
-        // Access the RequestQueue through singleton class.
-
-
-        return null;
-    }
-
-
     // get a list of games from API using background thread
     public Single<List<Game>> getGameList(String query) {
-        return Single.create(new SingleOnSubscribe<List<Game>>() {
-            @Override
-            public void subscribe(@NonNull SingleEmitter<List<Game>> emitter) throws Exception {
-                // make request with volley
-                String requestUrl = BASE_URL + SEARCH_URL + query;
+        return Single.create(emitter -> {
+            // make request with volley
+            String requestUrl = BASE_URL + SEARCH_URL + query;
 
-                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                        requestUrl,
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                    requestUrl,
 
-                        response -> {
-                            Log.d("repository", response.toString());
-                            // loop through Json Array get Game Objects and return gameList
-                            List<Game> games = Mappers.JsonResponseToGameList(response);
-                            emitter.onSuccess(games); // emit games to viewModel
-                        },
-                        error -> {
-                            Log.d("repository", error.getMessage());
-                        }
-                );
-                // enqueue request
-                ApiClient.getInstance(MyApplication.getAppContext()).addToRequestQueue(jsonArrayRequest);
-            }
+                    response -> {
+                        Log.d("repository", response.toString());
+                        // loop through Json Array get Game Objects and return gameList
+                        List<Game> games = Mappers.JsonResponseToGameList(response);
+                        emitter.onSuccess(games); // emit games to viewModel
+                    },
+                    error -> {
+                        Log.d("repository", error.getMessage());
+                        error.printStackTrace();
+                    }
+            );
+            // enqueue request
+            ApiClient.getInstance(MyApplication.getAppContext()).addToRequestQueue(jsonArrayRequest);
         });
     }
 

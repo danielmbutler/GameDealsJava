@@ -1,8 +1,8 @@
 package com.dbtechprojects.gamedealsjava.ui.viewmodels;
-
 import android.util.Log;
 
-import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.dbtechprojects.gamedealsjava.models.Game;
@@ -10,11 +10,9 @@ import com.dbtechprojects.gamedealsjava.repository.RepositoryImpl;
 
 import java.util.List;
 
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -24,7 +22,11 @@ public class HomeViewModel extends ViewModel {
     private final RepositoryImpl repository = RepositoryImpl.getInstance();
 
     // disposable
-    CompositeDisposable disposable = new CompositeDisposable();
+    private  final CompositeDisposable disposable = new CompositeDisposable();
+
+    //LiveData to be observed in Fragment
+    private final MutableLiveData<List<Game>> _gamesList = new MutableLiveData<List<Game>>();
+    public LiveData<List<Game>> gamesList = _gamesList;
 
     //call get games when viewModel gets instantiated
     public HomeViewModel(
@@ -36,7 +38,7 @@ public class HomeViewModel extends ViewModel {
         Disposable subscription = repository.getGameList("test")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(games -> Log.d("ViewModel", "found games: " + games.toString()));
+                .subscribe(_gamesList::postValue);
 
         disposable.add(subscription);
     }
