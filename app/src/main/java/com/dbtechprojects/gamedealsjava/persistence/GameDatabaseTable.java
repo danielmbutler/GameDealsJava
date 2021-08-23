@@ -1,5 +1,7 @@
 package com.dbtechprojects.gamedealsjava.persistence;
 
+import static com.dbtechprojects.gamedealsjava.persistence.GameDatabaseTable.TableColumns.TABLE_NAME;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -34,7 +36,7 @@ public class GameDatabaseTable {
      (stops duplicate data)
      */
     public static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + TableColumns.TABLE_NAME + " (" +
+            "CREATE TABLE " + TABLE_NAME + " (" +
                     TableColumns._ID + " INTEGER PRIMARY KEY," +
                     TableColumns.COLUMN_NAME_TITLE + " TEXT," +
                     TableColumns.COLUMN_NAME_Image + " TEXT," +
@@ -47,7 +49,7 @@ public class GameDatabaseTable {
 
 
     public static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + TableColumns.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     // store game in DB
     public static void SaveGame(Game game, SQLiteDatabase db){
@@ -63,7 +65,7 @@ public class GameDatabaseTable {
         values.put(TableColumns.COLUMN_NAME_GameId, game.gameID);
 
         // Insert the new row, returning the primary key value of the new row
-         long res = db.insert(TableColumns.TABLE_NAME, null, values);
+         long res = db.insert(TABLE_NAME, null, values);
          Log.d("Games Database", "saved game : " + res);
     }
 
@@ -71,7 +73,7 @@ public class GameDatabaseTable {
     public static ArrayList<Game> getSavedGames(SQLiteDatabase db){
         Log.d("Games Database", "get Saved games called");
         ArrayList<Game> gameList = new ArrayList<>();
-        Cursor res = db.rawQuery( "select * from "+TableColumns.TABLE_NAME, null );
+        Cursor res = db.rawQuery( "select * from "+ TABLE_NAME, null );
         res.moveToFirst();
         while(!res.isAfterLast()) {
             Game game = new Game(
@@ -83,9 +85,10 @@ public class GameDatabaseTable {
                     (res.getString(res.getColumnIndex(TableColumns.COLUMN_NAME_CheapestDealId))),
                     "",
                     (res.getString(res.getColumnIndex(TableColumns.COLUMN_NAME_Cheapest))),
-                    ""
+                    "",
+                    (res.getInt(res.getColumnIndex(TableColumns._ID)))
             );
-            Log.d("Games Database", "found game" + game);
+            Log.d("Games Database", "found game" + game.id + " " + game.external);
             gameList.add(game);
             res.moveToNext();
         }
@@ -93,9 +96,18 @@ public class GameDatabaseTable {
         return gameList;
 
     }
+
+    // delete saved game
+    public static void deleteGame(Game game, SQLiteDatabase db){
+        Log.d("Games Database", "DELETING id " + game.id);
+        db.delete(
+                TABLE_NAME,  // Where to delete
+                TableColumns._ID+" = ?",
+                new String[]{String.valueOf(game.id)});  // What to delete
+        db.close();
+    }
 }
 
-// delete saved game
 
 
 

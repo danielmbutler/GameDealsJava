@@ -5,8 +5,6 @@ import static com.dbtechprojects.gamedealsjava.utils.Constants.SEARCH_URL;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.dbtechprojects.gamedealsjava.api.ApiClient;
 import com.dbtechprojects.gamedealsjava.models.Game;
@@ -15,11 +13,8 @@ import com.dbtechprojects.gamedealsjava.persistence.GameDatabase;
 import com.dbtechprojects.gamedealsjava.persistence.GameDatabaseTable;
 import com.dbtechprojects.gamedealsjava.utils.MyApplication;
 import java.util.List;
-import java.util.Observable;
 
 import io.reactivex.Completable;
-import io.reactivex.CompletableEmitter;
-import io.reactivex.CompletableOnSubscribe;
 import io.reactivex.Single;
 
 
@@ -43,6 +38,7 @@ public class RepositoryImpl implements DefaultRepository {
 
 
     // get a list of games from API using background thread
+    @Override
     public Single<List<Game>> getGameList(String query) {
         return Single.create(emitter -> {
             // make request with volley
@@ -67,6 +63,7 @@ public class RepositoryImpl implements DefaultRepository {
         });
     }
 
+    @Override
     public Completable saveGame(Game game){
         Log.d("repository", "saving game " + game);
         return Completable.create(
@@ -82,6 +79,24 @@ public class RepositoryImpl implements DefaultRepository {
         );
     }
 
+    @Override
+    public Completable deleteGame(Game game) {
+        return Completable.create(
+                emitter -> {
+                    try {
+                        SQLiteDatabase db = gameDb.getWritableDatabase();
+                        Log.d("Completable", "deleting " + game);
+                        GameDatabaseTable.deleteGame(game, db);
+                        emitter.onComplete();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                        emitter.onError(e.fillInStackTrace());
+                    }
+                }
+        );
+    }
+
+    @Override
     public Single<List<Game>> getSavedGames(){
         return Single.create(emitter -> {
             SQLiteDatabase db = gameDb.getReadableDatabase();

@@ -11,4 +11,6 @@ public interface DefaultRepository {
 
     Single<List<Game>> getGameList(String query);
     Completable saveGame(Game game);
+    Completable deleteGame(Game game);
+    Single<List<Game>> getSavedGames();
 }

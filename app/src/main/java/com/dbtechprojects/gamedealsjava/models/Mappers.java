@@ -24,7 +24,8 @@ public class Mappers {
                         jsonGame.getString("cheapestDealID"),
                         "",
                         jsonGame.getString("cheapest"),
-                        ""
+                        "",
+                        0
                 );
                 games.add(game);
             }

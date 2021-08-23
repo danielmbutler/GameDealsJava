@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.dbtechprojects.gamedealsjava.models.Game;
 import com.dbtechprojects.gamedealsjava.repository.RepositoryImpl;
+import com.dbtechprojects.gamedealsjava.utils.SingleLiveEvent;
 
 import java.util.List;
 
@@ -22,13 +23,15 @@ public class SavedViewModel extends ViewModel {
     private final RepositoryImpl repository = RepositoryImpl.getInstance();
 
     // disposable
-    private  final CompositeDisposable disposable = new CompositeDisposable();
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
     //LiveData to be observed in Fragment
     private final MutableLiveData<List<Game>> _gamesList = new MutableLiveData<>();
     public LiveData<List<Game>> gamesList = _gamesList;
 
-    public SavedViewModel(){
+    public SingleLiveEvent<String> dbMessages = new SingleLiveEvent<>();
+
+    public SavedViewModel() {
         getGames();
     }
 
@@ -49,5 +52,15 @@ public class SavedViewModel extends ViewModel {
 
     public void deleteGame(Game game) {
         Log.d("SavedViewModel", "delete " + game.external);
+
+        Disposable deleteGame = repository.deleteGame(game)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .doOnComplete(() -> dbMessages.postValue("Game deleted"))
+                .doOnError(throwable -> dbMessages.postValue("Error deleting game"))
+                .subscribe();
+
+        disposable.add(deleteGame);
+
     }
 }

@@ -36,7 +36,8 @@ public class Game implements Serializable {
         String cheapestDealID,
         String timestamp,
         String cheapest,
-        String saved
+        String saved,
+        int id
     ){
         this.cheapest = cheapest;
         this.saved = saved;
@@ -47,6 +48,7 @@ public class Game implements Serializable {
         this.internalName = internalName;
         this.steamAppID = steamAppId;
         this.thumb = thumb;
+        this.id = id;
 
     }
 

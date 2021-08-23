@@ -17,6 +17,7 @@ import com.dbtechprojects.gamedealsjava.models.Game;
 import com.dbtechprojects.gamedealsjava.ui.adapters.GameListAdapter;
 import com.dbtechprojects.gamedealsjava.ui.adapters.SavedGameListAdapter;
 import com.dbtechprojects.gamedealsjava.ui.viewmodels.SavedViewModel;
+import com.dbtechprojects.gamedealsjava.utils.ViewUtils;
 
 public class SavedFragment extends Fragment implements SavedGameListAdapter.onClickListener {
 
@@ -57,6 +58,12 @@ public class SavedFragment extends Fragment implements SavedGameListAdapter.onCl
             if (!games.isEmpty() && adapter != null){
                 hidePlaceholder();
                 adapter.setDataSet(games);
+            }
+        });
+
+        viewModel.dbMessages.observe(getViewLifecycleOwner(), message -> {
+            if (message != null  && !message.isEmpty()){
+                ViewUtils.showSnackBar(binding.getRoot(), requireActivity(), message);
             }
         });
     }
