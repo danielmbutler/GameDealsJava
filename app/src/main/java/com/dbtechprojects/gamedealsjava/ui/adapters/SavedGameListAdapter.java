@@ -10,7 +10,6 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dbtechprojects.gamedealsjava.R;
-import com.dbtechprojects.gamedealsjava.databinding.GameItemBinding;
 import com.dbtechprojects.gamedealsjava.databinding.SavedGameItemBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
 import com.dbtechprojects.gamedealsjava.utils.ImageLoader;
@@ -37,6 +36,9 @@ public class SavedGameListAdapter extends RecyclerView.Adapter<SavedGameListAdap
     public void removeItemAtPosition(int position){
         dataSet.remove(position);
         notifyDataSetChanged();
+    }
+    public int getListSize(){
+        return dataSet.size();
     }
 
     @NonNull

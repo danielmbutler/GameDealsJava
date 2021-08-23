@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.dbtechprojects.gamedealsjava.databinding.FragmentSavedDealsBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
-import com.dbtechprojects.gamedealsjava.ui.adapters.GameListAdapter;
 import com.dbtechprojects.gamedealsjava.ui.adapters.SavedGameListAdapter;
 import com.dbtechprojects.gamedealsjava.ui.viewmodels.SavedViewModel;
 import com.dbtechprojects.gamedealsjava.utils.ViewUtils;
@@ -56,7 +55,7 @@ public class SavedFragment extends Fragment implements SavedGameListAdapter.onCl
     private void initObservers() {
         viewModel.gamesList.observe(getViewLifecycleOwner(), games -> {
             if (!games.isEmpty() && adapter != null){
-                hidePlaceholder();
+                showPlaceholder(false);
                 adapter.setDataSet(games);
             }
         });
@@ -68,10 +67,17 @@ public class SavedFragment extends Fragment implements SavedGameListAdapter.onCl
         });
     }
 
-    private void hidePlaceholder() {
-        binding.SavedGamesPlaceHolderImage.setVisibility(View.GONE);
-        binding.textView.setVisibility(View.GONE);
+    private void showPlaceholder(boolean shouldShow) {
+        if (shouldShow){
+            binding.SavedGamesPlaceHolderImage.setVisibility(View.VISIBLE);
+            binding.textView.setVisibility(View.VISIBLE);
+        } else {
+            binding.SavedGamesPlaceHolderImage.setVisibility(View.GONE);
+            binding.textView.setVisibility(View.GONE);
+        }
     }
+
+
 
     @Override
     public void onDestroyView() {
@@ -92,6 +98,9 @@ public class SavedFragment extends Fragment implements SavedGameListAdapter.onCl
                     public void onClick(DialogInterface dialog, int which) {
                         adapter.removeItemAtPosition(position);
                         viewModel.deleteGame(game);
+                        if (adapter.getListSize() == 0 ){
+                            showPlaceholder(true);
+                        }
                     }
                 })
 
