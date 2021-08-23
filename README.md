@@ -15,6 +15,6 @@ Java Version of my GameDeals App
 
 </p>
 
-| Create Contact| Update Contact| Delete Contact| Phone Call |
-| ------------- | ------------- | ------------- | ------------- |
-| 	<img src="https://github.com/danielmbutler/AddressBookApp/blob/master/resources/create.gif" width="250" title="Create" >		 	      | 		 <img src="https://github.com/danielmbutler/AddressBookApp/blob/master/resources/update.gif" width="250" title="Update" >		      | 			<img src="https://github.com/danielmbutler/AddressBookApp/blob/master/resources/delete.gif" width="250" title="Delete" > 	      |<img src="https://github.com/danielmbutler/AddressBookApp/blob/master/resources/phonecall.gif" width="250" title="Call" > |
+| List View| Detail View|
+| ------------- | ------------- |
+| 	<img src="https://github.com/danielmbutler/GameDealsJava/blob/master/resources/list%20view.PNG" width="250" title="List" >		 	      | 		 <img src="https://github.com/danielmbutler/GameDealsJava/blob/master/resources/detail%20view.PNG" width="250" title="Detail" >|
