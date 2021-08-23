@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.dbtechprojects.gamedealsjava.R;
@@ -60,7 +59,11 @@ public class DealFragment extends Fragment {
 
     private void setupClicks() {
         binding.GameDealGetDealButton.setOnClickListener(v -> browseDeal());
-        binding.GameDealSaveDealButton.setOnClickListener(v -> viewModel.saveGame(game));
+        binding.GameDealSaveDealButton.setOnClickListener(v -> {
+            viewModel.saveGame(game);
+            binding.GameDealSaveDealButton.setText(R.string.Saved);
+            binding.GameDealSaveDealButton.setOnClickListener(null);
+        });
     }
 
     private void setupView(Game game) {

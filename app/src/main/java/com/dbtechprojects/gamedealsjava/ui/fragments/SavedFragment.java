@@ -1,5 +1,7 @@
 package com.dbtechprojects.gamedealsjava.ui.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -73,7 +75,23 @@ public class SavedFragment extends Fragment implements SavedGameListAdapter.onCl
 
     @Override
     public void onClick(Game game, int position) {
-        adapter.removeItemAtPosition(position);
-        viewModel.deleteGame(game);
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Delete " + game.external)
+                .setMessage("Are you sure you want to delete ?")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.removeItemAtPosition(position);
+                        viewModel.deleteGame(game);
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
     }
 }
