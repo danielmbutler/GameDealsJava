@@ -95,6 +95,13 @@ public class GameDatabaseTable {
     }
 }
 
+// delete saved game
+
+
+
+
+// delete all saved games
+
 //   String thumb,
 //        String steamAppId,
 //        String internalName,

@@ -37,7 +37,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your saved games will appear here."
+            android:text="@string/your_saved_games_will_appear_here"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="@+id/SavedGamesPlaceHolderImage"
             app:layout_constraintStart_toStartOf="@+id/SavedGamesPlaceHolderImage"

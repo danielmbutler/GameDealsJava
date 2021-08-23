@@ -25,7 +25,7 @@ public class SavedViewModel extends ViewModel {
     private  final CompositeDisposable disposable = new CompositeDisposable();
 
     //LiveData to be observed in Fragment
-    private final MutableLiveData<List<Game>> _gamesList = new MutableLiveData<List<Game>>();
+    private final MutableLiveData<List<Game>> _gamesList = new MutableLiveData<>();
     public LiveData<List<Game>> gamesList = _gamesList;
 
     public SavedViewModel(){
@@ -36,7 +36,7 @@ public class SavedViewModel extends ViewModel {
         Disposable subscription = repository.getSavedGames()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(games -> Log.d("ViewModel", "found games " + games));
+                .subscribe(_gamesList::postValue);
 
         disposable.add(subscription);
     }
@@ -45,5 +45,9 @@ public class SavedViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         disposable.dispose();
+    }
+
+    public void deleteGame(Game game) {
+        Log.d("SavedViewModel", "delete " + game.external);
     }
 }

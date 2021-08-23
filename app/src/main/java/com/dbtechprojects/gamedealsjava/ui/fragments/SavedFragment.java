@@ -1,20 +1,26 @@
 package com.dbtechprojects.gamedealsjava.ui.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.dbtechprojects.gamedealsjava.databinding.FragmentSavedDealsBinding;
+import com.dbtechprojects.gamedealsjava.models.Game;
+import com.dbtechprojects.gamedealsjava.ui.adapters.GameListAdapter;
+import com.dbtechprojects.gamedealsjava.ui.adapters.SavedGameListAdapter;
 import com.dbtechprojects.gamedealsjava.ui.viewmodels.SavedViewModel;
 
-public class SavedFragment extends Fragment {
+public class SavedFragment extends Fragment implements SavedGameListAdapter.onClickListener {
 
     private FragmentSavedDealsBinding binding;
     private SavedViewModel viewModel;
+    private SavedGameListAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,15 +35,45 @@ public class SavedFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setupRecyclerView();
+        initObservers();
 
+    }
+
+    private void setupRecyclerView() {
+        adapter = new SavedGameListAdapter(this);
+        binding.SavedGamesRecyclerView.setAdapter(adapter);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void initObservers() {
+        viewModel.gamesList.observe(getViewLifecycleOwner(), games -> {
+            if (!games.isEmpty() && adapter != null){
+                hidePlaceholder();
+                adapter.setDataSet(games);
+            }
+        });
+    }
+
+    private void hidePlaceholder() {
+        binding.SavedGamesPlaceHolderImage.setVisibility(View.GONE);
+        binding.textView.setVisibility(View.GONE);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+
+    @Override
+    public void onClick(Game game, int position) {
+        adapter.removeItemAtPosition(position);
+        viewModel.deleteGame(game);
     }
 }

@@ -16,4 +16,5 @@
     <string name="search_error">Please provide search term</string>
     <string name="no_games_error">No games found</string>
     <string name="saved_game">Saved game</string>
+    <string name="your_saved_games_will_appear_here">Your saved games will appear here.</string>
 </resources>

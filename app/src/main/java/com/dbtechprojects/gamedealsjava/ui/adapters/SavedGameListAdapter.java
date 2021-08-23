@@ -11,17 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dbtechprojects.gamedealsjava.R;
 import com.dbtechprojects.gamedealsjava.databinding.GameItemBinding;
+import com.dbtechprojects.gamedealsjava.databinding.SavedGameItemBinding;
 import com.dbtechprojects.gamedealsjava.models.Game;
 import com.dbtechprojects.gamedealsjava.utils.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVViewHolder> {
+public class SavedGameListAdapter extends RecyclerView.Adapter<SavedGameListAdapter.RVViewHolder> {
     private List<Game> dataSet = new ArrayList<>();
     private final onClickListener clickListener;
 
-    public GameListAdapter(
+    public SavedGameListAdapter(
             onClickListener clickListener
     ) {
         this.clickListener = clickListener;
@@ -30,6 +31,11 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVView
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void setDataSet(List<Game> value) {
         dataSet = value;
+        notifyDataSetChanged();
+    }
+
+    public void removeItemAtPosition(int position){
+        dataSet.remove(position);
         notifyDataSetChanged();
     }
 
@@ -50,15 +56,15 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVView
     }
 
     public static class RVViewHolder extends RecyclerView.ViewHolder {
-        public GameItemBinding binding;
+        public SavedGameItemBinding binding;
 
-        RVViewHolder(@NonNull GameItemBinding binding) {
+        RVViewHolder(@NonNull SavedGameItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
         public static RVViewHolder getViewHolder(ViewGroup parent) {
-            GameItemBinding binding = GameItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+            SavedGameItemBinding binding = SavedGameItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
 
             return new RVViewHolder(binding);
         }
@@ -67,7 +73,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVView
         public void bind(Game currentItem, onClickListener clickListener) {
             binding.GameItemPrice.setText("$" + currentItem.cheapest);
             binding.GameItemTitle.setText(currentItem.external);
-            binding.GameItemArrow.setOnClickListener(v -> clickListener.onClick(currentItem));
+            binding.GameItemDelete.setOnClickListener(v -> clickListener.onClick(currentItem, getAdapterPosition()));
 
             // load image
             ImageLoader
@@ -79,7 +85,7 @@ public class GameListAdapter extends RecyclerView.Adapter<GameListAdapter.RVView
     }
 
     public interface onClickListener{
-        void onClick(Game game);
+        void onClick(Game game, int position);
     }
 }
 
